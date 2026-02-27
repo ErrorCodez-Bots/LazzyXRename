@@ -4,9 +4,9 @@ id_pattern = re.compile(r'^.\d+$')
 
 class Config(object):
     # lazzy client config
-    API_ID    = os.environ.get("API_ID", "22802977")
-    API_HASH  = os.environ.get("API_HASH", "32e1f0a923912d4528bb3273b89de50f")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "8296288564:AAG3G60K3zmUp7OXneF4xp8G0s0pehhyUpc") 
+    API_ID    = os.environ.get("API_ID", "20293219")
+    API_HASH  = os.environ.get("API_HASH", "4aef7d9e065d92f4a95736eaeb93d3ac")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "7976435464:AAHDowmhRUxcnlW5FrBKckQr0JG5BcF4Qfs") 
    
     # database config
     DB_NAME = os.environ.get("DB_NAME","Cluster0")     
@@ -14,9 +14,9 @@ class Config(object):
  
     # other configs
     BOT_UPTIME  = time.time
-    START_PIC   = os.environ.get("START_PIC", "")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6860249430').split()]
-    FORCE_SUB   = os.environ.get("FORCE_SUB", "-1002231947017") 
+    START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/2fc36751a9123358476ff-5ca3e05fa627c79388.jpg")
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6834180565').split()]
+    FORCE_SUB   = os.environ.get("FORCE_SUB", "-1003322147522") 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
     MAX_CONCURRENT_TRANSMISSIONS = int(os.environ.get("MAX_CONCURRENT_TRANSMISSIONS", "2")) # Set the maximum amount of concurrent transmissions (uploads & downloads).
     
@@ -32,11 +32,11 @@ class Txt(object):
 ◈ I Aᴍ A Pᴏᴡᴇʀғᴜʟ Fɪʟᴇ Rᴇɴᴀᴍᴇʀ Bᴏᴛ.
 ◈ I Cᴀɴ Rᴇɴᴀᴍᴇ Fɪʟᴇs, Cʜᴀɴɢᴇ Tʜᴜᴍʙɴᴀɪʟs, Cᴏɴᴠᴇʀᴛ Bᴇᴛᴡᴇᴇɴ Vɪᴅᴇᴏ Aɴᴅ Fɪʟᴇ, Aɴᴅ Sᴜᴘᴘᴏʀᴛ Cᴜsᴛᴏᴍ Tʜᴜᴍʙɴᴀɪʟs Aɴᴅ Cᴀᴘᴛɪᴏɴs.
 
-• Mᴀɪɴᴛᴀɪɴᴇᴅ Bʏ : @Mrsasuke07</b>"""
+• Mᴀɪɴᴛᴀɪɴᴇᴅ Bʏ : @ZxZenitsu</b>"""
 
     ABOUT_TXT = """<b>╭───────────⍟
 ├◈ ᴍy ɴᴀᴍᴇ : <a href='https://t.me/FilexRename_Bot'>FileXRename⚡️</a>
-├◈ Dᴇᴠᴇʟᴏᴩᴇʀꜱ : <a href='https://t.me/Satorux_Gojo'>Satoru Gojo</a>
+├◈ Dᴇᴠᴇʟᴏᴩᴇʀꜱ : <a href='https://t.me/ZxZenitsu'>Zenitsu✨</a>
 ├◈ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ: <a href='https://t.me/Lazzy_Bots_Official'>Lazzy Bots Official</a>
 ├◈ Lɪʙʀᴀʀy : <a href='https://github.com/pyrogram'>Pyʀᴏɢʀᴀᴍ</a>
 ├◈ Lᴀɴɢᴜᴀɢᴇ: <a href='https://www.python.org/'>Pʏᴛʜᴏɴ 𝟹</a>
