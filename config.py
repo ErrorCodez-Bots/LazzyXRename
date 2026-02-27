@@ -17,7 +17,7 @@ class Config(object):
     START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/2fc36751a9123358476ff-5ca3e05fa627c79388.jpg")
     ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6834180565').split()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "-1003322147522") 
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1003322147522"))
     MAX_CONCURRENT_TRANSMISSIONS = int(os.environ.get("MAX_CONCURRENT_TRANSMISSIONS", "2")) # Set the maximum amount of concurrent transmissions (uploads & downloads).
     
     # wes response configuration     
