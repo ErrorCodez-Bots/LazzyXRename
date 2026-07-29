@@ -30,14 +30,14 @@ def build_sub_keyboard() -> InlineKeyboardMarkup:
         ]
     ])
 
-# மெசேஜ்க்கு ரியாக்ஷன் (Reaction Emoji) ஆட் செய்யும் ஹெல்பர் ஃபங்க்ஷன்
+# Helper function to add reaction emoji to a message
 async def add_sparkle_reaction(message):
     try:
-        # முதல் முயற்சி: நேரடி எமோஜி
+        # First attempt: Direct emoji string
         await message.react("✨")
     except Exception:
         try:
-            # இரண்டாம் முயற்சி: Reaction Object
+            # Second attempt: Reaction parameter
             await message.react(emoji="✨")
         except Exception:
             pass
@@ -47,10 +47,10 @@ async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)
 
-    # 1. பயனர் அனுப்பிய /start மெசேஜ்க்கு ✨ ரியாக்ஷன் தருவது
+    # 1. Add ✨ reaction to the user's /start message
     await add_sparkle_reaction(message)
 
-    # 2. லோடிங் மெசேஜ் அனிமேஷன்
+    # 2. Loading animation
     loading_msg = await message.reply_text("<b>Loading. ✨</b>")
     await asyncio.sleep(0.4)
     await loading_msg.edit_text("<b>Loading.. ✨</b>")
@@ -63,13 +63,13 @@ async def start(client, message):
     keyboard = build_start_keyboard()
     caption_text = Txt.START_TXT.format(user.mention)
 
-    # 3. ஸ்டார்ட் மெசேஜ் அனுப்புதல்
+    # 3. Send the start message
     if Config.START_PIC:
         sent_msg = await message.reply_photo(Config.START_PIC, caption=caption_text, reply_markup=keyboard)       
     else:
         sent_msg = await message.reply_text(text=caption_text, reply_markup=keyboard, disable_web_page_preview=True)
 
-    # 4. பாட் அனுப்பிய போட்டோ/மெசேஜின் டைம் பக்கத்தில் ✨ ரியாக்ஷன் ஆட் செய்வது
+    # 4. Add ✨ reaction to the bot's sent message
     await add_sparkle_reaction(sent_msg)
 
 @Client.on_callback_query()
