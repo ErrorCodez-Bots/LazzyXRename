@@ -42,7 +42,8 @@ async def add_sparkle_reaction(message):
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
     user = message.from_user
-   
+    
+    # Safe database call
     try:
         await db.add_user(client, message)
     except Exception as e:
@@ -96,7 +97,7 @@ async def start(client, message):
             disable_web_page_preview=True
         )
 
-    # 4. Add the twinkling star reaction to the photo/message timestamp
+    # 4. Add the twinkling star reaction
     if sent_msg:
         await add_sparkle_reaction(sent_msg)
 
@@ -127,95 +128,47 @@ async def cb_handler(client, query: CallbackQuery):
                 disable_web_page_preview=True,
                 reply_markup=build_start_keyboard()
             ) 
+            
     elif data == "help":
-        await query.message.edit_text(
-            text=Txt.HELP_TXT, 
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        )    
-    elif data == "about":
-        await query.message.edit_text(
-            text=Txt.ABOUT_TXT.format(client.mention),
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        )
-    elif data == "admins":
-        await query.message.edit_text(
-            text=Txt.ADMINS_TXT,
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        ) 
-    elif data == "close":
-        try:
-            await query.message.delete()
-            if query.message.reply_to_message:
-                await query.message.reply_to_message.delete()
-        except Exception:
-            pass
-        caption_text = (
-            f"<b>HEY, {user_mention}! WELCOME TO THE MOST ADVANCED RENAME BOT!</b>\n\n"
-            f"<b>WITH MY POWERFUL FEATURES, YOU CAN:-</b>\n"
-            f"<b>• AUTORENAME FILES WITH CUSTOM FORMATS.</b>\n"
-            f"<b>• ADD CAPTIONS OR SELECT THUMBNAILS.</b>\n"
-            f"<b>• PROCESS FILES SEQUENTIALLY FOR SMOOTH WORKFLOW.</b>\n\n"
-            f"<b>🔷 READY TO BEGIN? JUST SEND ME ANY FILE!</b>\n"
-            f"<b>🔷 FOR DETAILS, TAP THE HELP BUTTON BELOW.</b>"
-        )
         if query.message.photo:
             await query.message.edit_caption(
-                caption=caption_text,
-                reply_markup=build_start_keyboard()
+                caption=Txt.HELP_TXT,
+                reply_markup=sub_keyboard
             )
         else:
             await query.message.edit_text(
-                text=caption_text,
+                text=Txt.HELP_TXT, 
                 disable_web_page_preview=True,
-                reply_markup=build_start_keyboard()
+                reply_markup=sub_keyboard
+            )    
+            
+    elif data == "about":
+        text_content = Txt.ABOUT_TXT.format(client.mention)
+        if query.message.photo:
+            await query.message.edit_caption(
+                caption=text_content,
+                reply_markup=sub_keyboard
+            )
+        else:
+            await query.message.edit_text(
+                text=text_content,
+                disable_web_page_preview=True,
+                reply_markup=sub_keyboard
+            )
+            
+    elif data == "admins":
+        if query.message.photo:
+            await query.message.edit_caption(
+                caption=Txt.ADMINS_TXT,
+                reply_markup=sub_keyboard
+            )
+        else:
+            await query.message.edit_text(
+                text=Txt.ADMINS_TXT,
+                disable_web_page_preview=True,
+                reply_markup=sub_keyboard
             ) 
-    elif data == "help":
-        await query.message.edit_text(
-            text=Txt.HELP_TXT, 
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        )    
-    elif data == "about":
-        await query.message.edit_text(
-            text=Txt.ABOUT_TXT.format(client.mention),
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        )
-    elif data == "admins":
-        await query.message.edit_text(
-            text=Txt.ADMINS_TXT,
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        ) 
-    elif data == "close":
-        try:
-            await query.message.delete()
-            if query.message.reply_to_message:
-                await query.message.reply_to_message.delete()
-        except Exception:
-            pass
-        ) 
-    elif data == "help":
-        await query.message.edit_text(
-            text=Txt.HELP_TXT, 
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        )    
-    elif data == "about":
-        await query.message.edit_text(
-            text=Txt.ABOUT_TXT.format(client.mention),
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        )
-    elif data == "admins":
-        await query.message.edit_text(
-            text=Txt.ADMINS_TXT,
-            disable_web_page_preview=True,
-            reply_markup=sub_keyboard
-        ) 
+            
     elif data == "close":
         try:
             await query.message.delete()
