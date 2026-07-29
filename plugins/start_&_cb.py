@@ -63,15 +63,15 @@ async def start(client, message):
 
     keyboard = build_start_keyboard()
 
-    # Blockquote வடிவில் வடிவமைக்கப்பட்ட மெசேஜ்
+    # Blockquote வடிவில் வடிவமைக்கப்பட்ட மெசேஜ் (user.mention என சரி செய்யப்பட்டது)
     caption_text = (
-        f"<blockquote><b>Hᴇʏ, {user_mention}! Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴏsᴛ ᴀᴅᴠᴀɴᴄᴇᴅ ʀᴇɴᴀᴍᴇ ʙᴏᴛ!</b></blockquote>\n\n"
-            f"<blockquote expandable><b>Wɪᴛʜ ᴍʏ ᴘᴏᴡᴇʀғᴜʟ ғᴇᴀᴛᴜʀᴇs, ʏᴏᴜ ᴄᴀɴ:-\n"
-            f"• Aᴜᴛᴏʀᴇɴᴀᴍᴇ ғɪʟᴇs ᴡɪᴛʜ ᴄᴜsᴛᴏᴍ ғᴏʀᴍᴀᴛs.\n"
-            f"• Aᴅᴅ ᴄᴀᴘᴛɪᴏɴs ᴏʀ sᴇʟᴇᴄᴛ ᴛʜᴜᴍʙɴᴀɪʟs.\n"
-            f"• Pʀᴏᴄᴇss ғɪʟᴇs sᴇǫᴜᴇɴᴛɪᴀʟʟʏ ғᴏʀ sᴍᴏᴏᴛʜ ᴡᴏʀᴋғʟᴏᴡ.</b></blockquote>\n\n"
-            f"<blockquote><b>🔷 Rᴇᴀᴅʏ ᴛᴏ ʙᴇɢɪɴ? ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴀɴʏ ғɪʟᴇ!\n"
-            f"🔷 Fᴏʀ ᴅᴇᴛᴀɪʟs, ᴛᴀᴘ ᴛʜᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ.</b></blockquote>"
+        f"<blockquote><b>Hᴇʏ, {user.mention}! Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴏsᴛ ᴀᴅᴠᴀɴᴄᴇᴅ ʀᴇɴᴀᴍᴇ ʙᴏᴛ!</b></blockquote>\n\n"
+        f"<blockquote expandable><b>Wɪᴛʜ ᴍʏ ᴘᴏᴡᴇʀғᴜʟ ғᴇᴀᴛᴜʀᴇs, ʏᴏᴜ ᴄᴀɴ:-\n"
+        f"• Aᴜᴛᴏʀᴇɴᴀᴍᴇ ғɪʟᴇs ᴡɪᴛʜ ᴄᴜsᴛᴏᴍ ғᴏʀᴍᴀᴛs.\n"
+        f"• Aᴅᴅ ᴄᴀᴘᴛɪᴏɴs ᴏʀ sᴇʟᴇᴄᴛ ᴛʜᴜᴍʙɴᴀɪʟs.\n"
+        f"• Pʀᴏᴄᴇss ғɪʟᴇs sᴇǫᴜᴇɴᴛɪᴀʟʟʏ ғᴏʀ sᴍᴏᴏᴛʜ ᴡᴏʀᴋғʟᴏᴡ.</b></blockquote>\n\n"
+        f"<blockquote><b>🔷 Rᴇᴀᴅʏ ᴛᴏ ʙᴇɢɪɴ? ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴀɴʏ ғɪʟᴇ!\n"
+        f"🔷 Fᴏʀ ᴅᴇᴛᴀɪʟs, ᴛᴀᴘ ᴛʜᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ.</b></blockquote>"
     )
 
     # 3. Send photo with Spoiler (has_spoiler=True)
@@ -82,7 +82,7 @@ async def start(client, message):
                 photo=Config.START_PIC, 
                 caption=caption_text, 
                 reply_markup=keyboard,
-                has_spoiler=True  # <--- இங்குதான் Spoiler ஆட் செய்யப்படுகிறது!
+                has_spoiler=True
             )
         except Exception as e:
             print(f"Photo sending failed, fallback to text: {e}")
@@ -113,7 +113,7 @@ async def cb_handler(client, query: CallbackQuery):
             f"<blockquote><b>Hᴇʏ, {user_mention}! Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴏsᴛ ᴀᴅᴠᴀɴᴄᴇᴅ ʀᴇɴᴀᴍᴇ ʙᴏᴛ!</b></blockquote>\n\n"
             f"<blockquote expandable><b>Wɪᴛʜ ᴍʏ ᴘᴏᴡᴇʀғᴜʟ ғᴇᴀᴛᴜʀᴇs, ʏᴏᴜ ᴄᴀɴ:-\n"
             f"• Aᴜᴛᴏʀᴇɴᴀᴍᴇ ғɪʟᴇs ᴡɪᴛʜ ᴄᴜsᴛᴏᴍ ғᴏʀᴍᴀᴛs.\n"
-            f"• Aᴅᴅ ᴄᴀᴘᴛɪᴏɴs ᴏʀ sᴇʟᴇᴄᴛ ᴛʜᴜᴍʙɴᴀɪʟs.\n"
+            f"• Aᴅᴅ ᴄᴀᴘᴛɪᴏɴs ᴏʀ sᴇʟᴇᴄᴛ ᴛʜᴜ姆ɴᴀɪʟs.\n"
             f"• Pʀᴏᴄᴇss ғɪʟᴇs sᴇǫᴜᴇɴᴛɪᴀʟʟʏ ғᴏʀ sᴍᴏᴏᴛʜ ᴡᴏʀᴋғʟᴏᴡ.</b></blockquote>\n\n"
             f"<blockquote><b>🔷 Rᴇᴀᴅʏ ᴛᴏ ʙᴇɢɪɴ? ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴀɴʏ ғɪʟᴇ!\n"
             f"🔷 Fᴏʀ ᴅᴇᴛᴀɪʟs, ᴛᴀᴘ ᴛʜᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ.</b></blockquote>"
