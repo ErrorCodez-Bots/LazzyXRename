@@ -52,11 +52,11 @@ async def start(client, message):
     await add_sparkle_reaction(message)
 
     # 2. Loading animation
-    loading_msg = await message.reply_text("<b>Loading. ✨</b>")
+    loading_msg = await message.reply_text("<b>Lᴏᴀᴅɪɴɢ. </b>")
     await asyncio.sleep(0.4)
-    await loading_msg.edit_text("<b>Loading.. ✨</b>")
+    await loading_msg.edit_text("<b>Lᴏᴀᴅɪɴɢ.. </b>")
     await asyncio.sleep(0.4)
-    await loading_msg.edit_text("<b>Loading... ✨</b>")
+    await loading_msg.edit_text("<b>Lᴏᴀᴅɪɴɢ... </b>")
     await asyncio.sleep(0.4)
 
     await loading_msg.delete()
