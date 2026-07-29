@@ -9,11 +9,8 @@ from pyrogram.types import (
 from helper.database import db
 from config import Config, Txt  
 
-
-# பச்சைக் கலர் (Web App) மற்றும் சாதாரண பட்டன்கள் அமைக்கும் முறை
 def build_start_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
-        # WebAppInfo கொடுத்தா டெலிகிராம்ல பட்டன் பச்சைக் கலர்ல (Green) மாறும்
         [InlineKeyboardButton('⚡ Updates Channel ⚡', web_app=WebAppInfo(url='https://t.me/Lazzy_Bots_Official/'))],
         [
             InlineKeyboardButton("About 😎", callback_data='about'), 
@@ -25,46 +22,40 @@ def build_start_keyboard() -> InlineKeyboardMarkup:
 
 def build_sub_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("❣️ Sᴏᴜʀᴄᴇ Cᴏᴅᴇ", web_app=WebAppInfo(url="https://t.me/Minato_Assist_Bot/"))],
+        [InlineKeyboardButton("❣️ Source Code", web_app=WebAppInfo(url="https://t.me/Minato_Assist_Bot/"))],
         [
-            InlineKeyboardButton("🔒 Cʟᴏꜱᴇ", callback_data="close"),
-            InlineKeyboardButton("⛔ Bᴀᴄᴋ", callback_data="start")
+            InlineKeyboardButton("🔒 Close", callback_data="close"),
+            InlineKeyboardButton("⛔ Back", callback_data="start")
         ]
     ])
-
 
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)
 
-    # 1. லோடிங் அனிமேஷன்
-    loading_msg = await message.reply_text("<b>Lᴏᴀᴅɪɴɢ. ✨</b>")
+    loading_msg = await message.reply_text("<b>Loading. ✨</b>")
     await asyncio.sleep(0.4)
-    await loading_msg.edit_text("<b>Lᴏᴀᴅɪɴɢ.. ✨</b>")
+    await loading_msg.edit_text("<b>Loading.. ✨</b>")
     await asyncio.sleep(0.4)
-    await loading_msg.edit_text("<b>Lᴏᴀᴅɪɴɢ... ✨</b>")
+    await loading_msg.edit_text("<b>Loading... ✨</b>")
     await asyncio.sleep(0.4)
 
-    # லோடிங் மெசேஜை நீக்குதல்
     await loading_msg.delete()
 
     keyboard = build_start_keyboard()
     caption_text = Txt.START_TXT.format(user.mention)
 
-    # 2. மெசேஜ் அனுப்பிட்டு அதுக்கு ரியாக்ஷன் சேர்ப்பது
     if Config.START_PIC:
         sent_msg = await message.reply_photo(Config.START_PIC, caption=caption_text, reply_markup=keyboard)       
     else:
         sent_msg = await message.reply_text(text=caption_text, reply_markup=keyboard, disable_web_page_preview=True)
 
-    # பயனர் மெசேஜ் & பாட் மெசேஜ் இரண்டிற்கும் ✨ ரியாக்ஷன்
     try:
         await message.react("✨")
         await sent_msg.react("✨")
     except Exception:
         pass
-
 
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
